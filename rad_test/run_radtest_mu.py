@@ -1,4 +1,3 @@
-from rad_test.run_radtest import EXPOSURE_REG_VALUE, RESOLUTION_H, RESOLUTION_W
 import v4l2
 import time
 import os
