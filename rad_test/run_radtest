@@ -1,0 +1,107 @@
+import v4l2 #sudo pip install v4l2
+import time
+import os
+import sys
+from PIL import Image
+from datetime import datetime
+import arducam_mipicamera as arducam
+from pathlib import Path
+import argparse
+
+DESCRIPTION = """
+Python2 script for running the MuTracker Image Sensor RadTest which takes an image every 10 seconds.
+"""
+
+EXPOSURE_REG_VALUE = 64600 # FIXME: [MUWARE-XXXX] Determine transformation to go from seconds to raw register value; this was determined by experiment and corresponds to an exposure of 0.2s
+RESOLUTION_W = 1600
+RESOLUTION_H = 1300
+MAX_FS_USAGE = 80
+
+
+def init_camera():
+    """
+    Initialization routine for the MIPI Arducam using Lawrence's exposure settings
+    """
+    camera = arducam.mipi_camera()
+    camera.init_camera()
+    camera.set_resolution(RESOLUTION_W, RESOLUTION_H)
+    camera.software_auto_exposure(enable=False)
+    camera.set_control(v4l2.V4L2_CID_EXPOSURE, EXPOSURE_REG_VALUE)
+    return camera
+
+def init_camera_auto():
+    """
+    Initialization routine for the MIPI Arducam using auto exposure settings
+    """
+    camera = arducam.mipi_camera()
+    camera.init_camera()
+    camera.set_resolution(RESOLUTION_W, RESOLUTION_H)
+    camera.software_auto_exposure(enable = True)
+    return camera
+
+
+def disk_usage(path):
+    """Return disk usage statistics about the given path.
+
+    Returned values are 'total', 'used' and 'free', which are the amount of total, used and free space, in bytes.
+
+    https://stackoverflow.com/questions/787776/find-free-disk-space-in-python-on-os-x/7285483#7285483
+    """
+    st = os.statvfs(path)
+    free = st.f_bavail * st.f_frsize
+    total = st.f_blocks * st.f_frsize
+    used = (st.f_blocks - st.f_bfree) * st.f_frsize
+    return total, used, free
+
+
+def run_radtest(image_dir, image_fmt):
+    # Data dir setup
+    now = datetime.now()
+    current_time = now.isoformat()
+    folder_path = '{}/{}/'.format(image_dir, current_time).replace('//','/')
+    os.makedirs(folder_path)
+
+    # Initialize camera
+    camera = init_camera_auto()
+    time.sleep(1)
+
+    while (True):
+        # Check diskspace before taking image
+        total, used, free = disk_usage('/')
+        percent_used = 100*used/total
+        if percent_used > MAX_FS_USAGE:
+	        sys.exit("Filesystem usage exceeds program's allowed MAX_FS_USAGE");
+
+        # Create new image filepath
+        now = datetime.now()
+        current_time = now.isoformat()
+        file_path='{}{}.{}'.format(folder_path,current_time,image_fmt)
+
+        # Capture and save image
+        frame = camera.capture(encoding = image_fmt)
+        frame.as_array.tofile(file_path)
+
+        # Release memory
+        del frame
+
+        # Also save a png image if image type selected was raw
+        if image_fmt == 'raw':
+            raw_data = open(file_path,'rb').read()
+            img_size = (RESOLUTION_W, RESOLUTION_H)
+            img = Image.frombytes('L', img_size, raw_data)
+            img.save(file_path.replace('raw','png'))
+
+        # Wait 10s to take next image
+        time.sleep(10)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+    parser.add_argument('--dir', type=str, default='/home/pi/mutracker_proto/radtest_data/', help='Path to store RadTest images')
+    parser.add_argument('--fmt', type=str, default='raw', choices=['raw','jpeg','i420'], help='Image format')
+    args = parser.parse_args()
+    run_radtest(args.dir, args.fmt)
+
+
+if __name__ == "__main__":
+    main()
