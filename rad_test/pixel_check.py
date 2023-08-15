@@ -87,8 +87,8 @@ def pixel_check(raw_dir, anom_dir):
 
 def main():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument('--dir', type=str, default='C:/Users/Evelyn Nutt/Downloads/0811_radtest_raw', help='Path to store RadTest raw images')
-    parser.add_argument('--anom', type=str, default='C:/Users/Evelyn Nutt/Downloads/anomaly_img', help='Path to store RadTest anomaly images')
+    parser.add_argument('--dir', type=str, default = r"C:\Users\Evelyn Nutt\Downloads\0811_radtest_raw", help='Path to store RadTest raw images')
+    parser.add_argument('--anom', type=str, default = r"C:\Users\Evelyn Nutt\Downloads\anomaly_img", help='Path to store RadTest anomaly images')
     args = parser.parse_args()
     pixel_check(args.dir, args.anom)
 
