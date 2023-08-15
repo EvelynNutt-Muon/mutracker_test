@@ -76,7 +76,7 @@ def pixel_check(raw_dir, anom_dir):
         if filename.endswith('.raw'):
             # Construct the full path to the image.
             raw_path = os.path.join(raw_dir, filename)
-        dark_frame_paths = ["path/to/dark_frame1.jpg","path/to/dark_frame2.jpg"]
+        dark_frame_paths = ["C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img\\darkframes\\0.png","C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img\\darkframes\\1.png"]
         # Create new anomaly image filepath.
         anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, filename, anom_dir)
         # Highlight dead and hot pixels.
