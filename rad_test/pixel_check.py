@@ -72,7 +72,7 @@ def pixel_check(raw_dir, anom_dir, img_fmt):
     anomaly_folder_path = '{}/{}/'.format(anom_dir, "anomaly-detected").replace('//','/')
     # os.makedirs(anomaly_folder_path)
 
-    # Loop through each raw image from rad test and highlight detected anomaly pixels.
+    # Loop through each raw image from rad test and highlight detected anomaly pixels  .
     for filename in os.listdir(raw_dir):
         # Construct the full path to the image.
         raw_path = os.path.join(raw_dir, filename)
