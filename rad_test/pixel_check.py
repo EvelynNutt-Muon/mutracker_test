@@ -73,9 +73,8 @@ def pixel_check(raw_dir, anom_dir):
 
     # Loop through each raw image from rad test and highlight detected anomaly pixels.
     for filename in os.listdir(raw_dir):
-        if filename.endswith('.raw'):
-            # Construct the full path to the image.
-            raw_path = os.path.join(raw_dir, filename)
+        # Construct the full path to the image.
+        raw_path = os.path.join(raw_dir, filename)
         dark_frame_paths = ["C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img\\darkframes\\0.png","C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img\\darkframes\\1.png"]
         # Create new anomaly image filepath.
         anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, filename, anom_dir)
