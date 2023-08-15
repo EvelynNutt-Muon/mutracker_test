@@ -33,6 +33,10 @@ def generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, dead_th
     input_image = Image.open(input_image_path)
     dark_frames = [Image.open(path) for path in dark_frame_paths]
 
+    # Convert all dark grames to the same mode as the input image.
+    mode = input_image.mode
+    dark_frames = [frame.convert(mode) for frame in dark_frames]
+
     # Calculate the mean dark frame.
     mean_dark_frame = Image.blend(dark_frames[0], dark_frames[1], alpha=1.0 / len(dark_frames))
 
