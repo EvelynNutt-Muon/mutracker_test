@@ -64,9 +64,9 @@ def generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, dead_th
     return highlight_image
 
 def pixel_check(raw_dir, anom_dir):
-    # Anomaly dir setup.
+    # Anomaly dir setup, one time use.
     anomaly_folder_path = '{}/{}/'.format(anom_dir, "anomaly-detected").replace('//','/')
-    os.makedirs(anomaly_folder_path)
+    # os.makedirs(anomaly_folder_path)
 
     # Create new image filepath.
     anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, "anom", anom_dir)
@@ -87,7 +87,7 @@ def pixel_check(raw_dir, anom_dir):
 
 def main():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument('--dir', type=str, default = "C:\\Users\\Evelyn Nutt\\Downloads\\0811_radtest_raw", help='Path to store RadTest raw images')
+    parser.add_argument('--dir', type=str, default = "C:\\Users\\Evelyn Nutt\\Downloads\\0811_radtest_png", help='Path to store RadTest png images')
     parser.add_argument('--anom', type=str, default = "C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img", help='Path to store RadTest anomaly images')
     args = parser.parse_args()
     pixel_check(args.dir, args.anom)
