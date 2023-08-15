@@ -63,29 +63,34 @@ def generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, dead_th
 
     return highlight_image
 
-def pixel_check(raw_dir, image_anom):
+def pixel_check(raw_dir, anom_dir):
     # Anomaly dir setup.
-    anomaly_folder_path = '{}/{}/'.format(image_anom, "anomaly-detected").replace('//','/')
+    anomaly_folder_path = '{}/{}/'.format(anom_dir, "anomaly-detected").replace('//','/')
     os.makedirs(anomaly_folder_path)
 
     # Create new image filepath.
-    anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, "anomaly-detected", image_anom)
+    anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, "anom", anom_dir)
 
     # Loop through each raw image from rad test and highlight detected anomaly pixels.
-    for raw_img in raw_dir:
-        input_image_path = raw_dir + "/" + raw_img
+    for filename in os.listdir(raw_dir):
+        if filename.endswith('.raw'):
+            # Construct the full path to the image.
+            raw_path = os.path.join(raw_dir, filename)
         dark_frame_paths = ["path/to/dark_frame1.jpg","path/to/dark_frame2.jpg"]
-        highlight_image = generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, 10, 245, (128,0,128), (255,0,0))
+        # Create new anomaly image filepath.
+        anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, filename, anom_dir)
+        # Highlight dead and hot pixels.
+        highlight_image = generate_anomaly_pixel_highlight(raw_path, dark_frame_paths, 10, 245, (128,0,128), (255,0,0))
         highlight_image.save(anomaly_file_path)
 
+    highlight_image.show()
 
 def main():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument('--dir', type=str, default='/home/pi/mutracker_proto/radtest_data/', help='Path to store RadTest images')
-    parser.add_argument('--anom', type=str, default='/home/pi/mutracker_proto/radtest_data/anomaly_images', help='Path to store RadTest anomaly images')
+    parser.add_argument('--dir', type=str, default='C:\\Users\\Evelyn Nutt\\Downloads\\0811_radtest_raw', help='Path to store RadTest raw images')
+    parser.add_argument('--anom', type=str, default='C:\\Users\\Evelyn Nutt\\Downloads\\anomaly_img', help='Path to store RadTest anomaly images')
     args = parser.parse_args()
     pixel_check(args.dir, args.anom)
-
 
 if __name__ == "__main__":
     main()
