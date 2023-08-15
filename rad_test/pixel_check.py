@@ -83,7 +83,7 @@ def pixel_check(raw_dir, anom_dir):
         # Create new anomaly image filepath.
         anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, filename, anom_dir)
         # Highlight dead and hot pixels.
-        highlight_image = generate_anomaly_pixel_highlight(raw_path, dark_frame_paths, 10, 245, (128,0,128), (255,0,0))
+        highlight_image = generate_anomaly_pixel_highlight(raw_path, dark_frame_paths, 10, 245, (0,0,255), (255,0,0))
         highlight_image.save(anomaly_file_path)
 
     highlight_image.show()
