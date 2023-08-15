@@ -19,8 +19,8 @@ Based on results, determine if Mutracker OV2311 is fly-able.
 
 
 import os
-from PIL import Image
 import argparse
+from PIL import Image
 
 
 DESCRIPTION = """
