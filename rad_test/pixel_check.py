@@ -1,0 +1,91 @@
+"""
+Just some psuedo code + notes:
+
+Move raw images from RPi to PC. Don't need to take any new images.
+Move dark frames from RPi to PC. 
+Set file paths for raw image folder & dark frames.
+Make new path (and/or folder) for anomaly image.
+For each raw images, check for dead and hot pixels.
+If dead or hot pixel is detected, display an image highlighting that pixel.
+Keep the one image and update as code runs through the whole file.
+Edge case: see if pixels change before and after a power cycle event.
+Edge case: see if pixels 'recovered' by the end of the rad test.
+Edge case: characterize the noise from beam on.
+What raw values do the pixels show when hit by the beam?
+How does radiation noise impact Mutracker outputted orientation?
+Based on results, determine if Mutracker OV2311 is fly-able.
+
+"""
+
+
+import os
+from PIL import Image
+import argparse
+
+
+DESCRIPTION = """
+Python3 script for checking Mutracker dead and hot pixels.
+"""
+
+
+def generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, dead_threshold, hot_threshold, dead_highlight_color, hot_highlight_color):
+    # Load the input image and dark frames.
+    input_image = Image.open(input_image_path)
+    dark_frames = [Image.open(path) for path in dark_frame_paths]
+
+    # Calculate the mean dark frame.
+    mean_dark_frame = Image.blend(*dark_frames, alpha=1.0 / len(dark_frames))
+
+    # Subtract the mean dark frame from the input image.
+    corrected_image = Image.blend(input_image, mean_dark_frame, alpha=-1.0)
+
+    # Convert the image to grayscale for easier pixel analysis.
+    grayscale_image = corrected_image.convert("L")
+
+    # Identify dead and hot pixels based on the threshold.
+    dead_pixel_coordinates = []
+    hot_pixel_coordinates = []
+    for y in range(grayscale_image.height):
+        for x in range(grayscale_image.width):
+            pixel_value = grayscale_image.getpixel((x,y))
+            if pixel_value <= dead_threshold:
+                dead_pixel_coordinates.append((x,y))
+            if pixel_value >= hot_threshold:
+                hot_pixel_coordinates.append((x,y))
+
+    # Generate a new image with dead and hot pixels highlighted.
+    highlight_image = input_image.copy()
+    highlight_pixels = highlight_image.load()
+    for coord in dead_pixel_coordinates:
+        highlight_pixels[coord] = dead_highlight_color
+    for coord in hot_pixel_coordinates:
+        highlight_pixels[coord] = hot_highlight_color
+
+    return highlight_image
+
+def pixel_check(raw_dir, image_anom):
+    # Anomaly dir setup.
+    anomaly_folder_path = '{}/{}/'.format(image_anom, "anomaly-detected").replace('//','/')
+    os.makedirs(anomaly_folder_path)
+
+    # Create new image filepath.
+    anomaly_file_path = '{}{}.{}'.format(anomaly_folder_path, "anomaly-detected", image_anom)
+
+    # Loop through each raw image from rad test and highlight detected anomaly pixels.
+    for raw_img in raw_dir:
+        input_image_path = raw_dir + "/" + raw_img
+        dark_frame_paths = ["path/to/dark_frame1.jpg","path/to/dark_frame2.jpg"]
+        highlight_image = generate_anomaly_pixel_highlight(input_image_path, dark_frame_paths, 10, 245, (128,0,128), (255,0,0))
+        highlight_image.save(anomaly_file_path)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+    parser.add_argument('--dir', type=str, default='/home/pi/mutracker_proto/radtest_data/', help='Path to store RadTest images')
+    parser.add_argument('--anom', type=str, default='/home/pi/mutracker_proto/radtest_data/anomaly_images', help='Path to store RadTest anomaly images')
+    args = parser.parse_args()
+    pixel_check(args.dir, args.anom)
+
+
+if __name__ == "__main__":
+    main()
