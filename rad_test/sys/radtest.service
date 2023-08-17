@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the mutracker radtest
+After=multi-user.target
+
+[Service]
+Environment=PYTHONPATH=$PYTHONPATH:/home/pi/MIPI_Camera/RPI/python/
+ExecStart=/usr/bin/python /home/pi/mutracker_test/rad_test/run_radtest_mu.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
