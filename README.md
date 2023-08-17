@@ -4,7 +4,7 @@ Software development for testing Mutracker will be broken into three stages:
 
 - Mutracker Radiation Test: All software required for testing the OV2311 chip on the Arducam module, along with scripts required for post-test analysis, comparative radiation recognition, and pixel anomaly detection.
 
-- Mutracker Star Field Simulator Test: Most of the code for this stage already exists on the `MuonSpace/mutracker_proto` repository. I may end up copying updated versions of those files over, but not as important for now. The main part of this stage is to get Mutracker to reproduce what is displayed on a screen while looking through a collimating lens. The procedure for the optical setup can be found in the Optics101 test report.
+- Mutracker Star Field Simulator Test: Most of the code for this stage already exists on the `mutracker_proto` [repository](https://github.com/Muon-Space/mutracker_proto/tree/master). I may end up copying updated versions of those files over, but not as important for now. The main part of this stage is to get Mutracker to reproduce what is displayed on a screen while looking through a collimating lens. The procedure for the optical setup can be found in the [Optics101 test report](https://docs.google.com/document/d/1qmIDggesDDpajqvfpwtfHPBFSn1zCFabPXSUIwwS-dc/edit).
  
 - Mutracker Validation Test: This stage will go beyond what has already been written for testing Mutracker by implementing open source star field generators, astrometric plate solvers, lens distortion calibration, point spread function characterization, and thermal testing. This is the final stage of the Star Field Simulator development.
 
@@ -12,7 +12,7 @@ Software development for testing Mutracker will be broken into three stages:
 
 I have ran into dozens and dozens of bugs trying to figure out all of these setup steps - so please follow them carefully so you don't mess up your machine or corrupt your RPi.
 
-As a caution, the current mutracker_proto code uses deprecated drivers on the Rasbian Buster OS, whereas you would think the Bullseye OS would work just fine. So, please follow these steps to have a successful setup.
+As a caution, the current `mutracker_proto` code uses deprecated drivers on the Rasbian Buster OS, whereas you would think the Bullseye OS would work just fine. So, please follow these steps to have a successful setup.
 
 ## General Setup
 
