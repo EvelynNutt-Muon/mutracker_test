@@ -67,6 +67,7 @@ How to start Mutracker Rad Test:
 - Run vncserver in a terminal on your PC.
 - Go to RealVNCViewer and open a terminal.
 - Enter these commands:
+
     cd mutracker_proto/radtest/systemd
     sudo su
     bash mutracker-radtest-enable.sh
@@ -75,6 +76,7 @@ How to start Mutracker Rad Test:
 How to stop Mutracker Rad Test:
 
 - While still in the systemd directory as the root user, enter the command:
+    
     bash mutracker-radtest-disable.sh
 - All done!
 
