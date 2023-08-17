@@ -4,7 +4,7 @@ Software development for testing Mutracker will be broken into three stages:
 
 - Mutracker Radiation Test: All software required for testing the OV2311 chip on the Arducam module, along with scripts required for post-test analysis, comparative radiation recognition, and pixel anomaly detection.
 
-- Mutracker Star Field Simulator Test: Most of the code for this stage already exists on the MuonSpace/mutracker_proto repository. I may end up copying updated versions of those files over, but not as important for now. The main part of this stage is to get Mutracker to reproduce what is displayed on a screen while looking through a collimating lens. The procedure for the optical setup can be found in the Optics101 test report.
+- Mutracker Star Field Simulator Test: Most of the code for this stage already exists on the `MuonSpace/mutracker_proto` repository. I may end up copying updated versions of those files over, but not as important for now. The main part of this stage is to get Mutracker to reproduce what is displayed on a screen while looking through a collimating lens. The procedure for the optical setup can be found in the Optics101 test report.
  
 - Mutracker Validation Test: This stage will go beyond what has already been written for testing Mutracker by implementing open source star field generators, astrometric plate solvers, lens distortion calibration, point spread function characterization, and thermal testing. This is the final stage of the Star Field Simulator development.
 
@@ -21,22 +21,22 @@ As a caution, the current mutracker_proto code uses deprecated drivers on the Ra
 3. Be sure to select your SD card and not your PC.
 4. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
 
-    - For hostname, I'd recommend using "mutracker" or something adjacent.
-    - For SSH, choose "pi" as the username and a quick-to-type password. Write all of these down!
+    - For hostname, I'd recommend using `mutracker` or something adjacent.
+    - For SSH, choose `pi` as the username and a quick-to-type password. Write all of these down!
     - For WiFi, I suggest using your hotspot so you can connect and test from anywhere.
 5. Load the OS onto the SD card.
 6. When that finishes, remove the SD card from your machine and insert the card into your RPi.
 7. Turn on the RPi and turn on your hotspot. Ensure your PC is also connected to the hotspot.
 8. Download Putty with all the default settings and enter the hostname into Putty.
 9. Login using SSH username and password.
-10. After you're logged in, run the command sudo raspi-config
+10. After you're logged in, run the command `sudo raspi-config`
 11. You can customize your pi how you'd like, but make sure to go to Interface Options and enable Camera and VNC. (You will have this easy access with a remote view of the RPi Desktop, but these are the two important ones to do now)
-12. Run sudo reboot
+12. Run `sudo reboot`
 13. Repeat steps 7-9.
-14. Run vncserver
-15. The terminal will give you a VNC desktop to log into in the format "yourusername.local:1"
+14. Run `vncserver`
+15. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
 16. Download RealVNCViewer with the default settings and log in.
-17. Add a new connection and enter "yourusername.local:1" or whatever the terminal gave you.
+17. Add a new connection and enter `yourusername.local:1` or whatever the terminal gave you.
 18. Start the connection and log into the desktop with your SSH information. 
 19. If you see the RPi Desktop, you're in!
 
@@ -47,7 +47,7 @@ Now that you're connected to the RPi Desktop, let's setup direct Ethernet connec
 1. Download Bonjour onto your PC and configure with all the default settings. This application will help interpret the Ethernet connection and handle IP addresses for you. 
 2. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
 3. Click the first item in the list.
-4. In the right drop-down menu, select "eth0"
+4. In the right drop-down menu, select `eth0`
 5. 
 
 # Mutracker Radiation Test
@@ -68,18 +68,18 @@ Now that you're connected to the RPi Desktop, let's setup direct Ethernet connec
 - Go to RealVNCViewer and open a terminal.
 - Enter these commands:
 
-    cd mutracker_proto/radtest/systemd
+    `cd mutracker_proto/radtest/systemd`
 
-    sudo su
+    `sudo su`
 
-    bash mutracker-radtest-enable.sh
-- Check that photos are being generated correctly in the radtest_data folder located in directory /home/pi/mutracker_proto
+    `bash mutracker-radtest-enable.sh`
+- Check that photos are being generated correctly in the `radtest_data` folder located in directory `/home/pi/mutracker_proto`
 
 ### How to stop Mutracker Rad Test:
 
 - While still in the systemd directory as the root user, enter the command:
     
-    bash mutracker-radtest-disable.sh
+    `bash mutracker-radtest-disable.sh`
 - All done!
 
 ### August 11th, 2023 Radiation Test Results: 
