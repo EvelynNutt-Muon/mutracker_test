@@ -14,7 +14,7 @@ I have ran into dozens and dozens of bugs trying to figure out all of these setu
 
 As a caution, the current mutracker_proto code uses deprecated drivers on the Rasbian Buster OS, whereas you would think the Bullseye OS would work just fine. So, please follow these steps to have a successful setup.
 
-# General Setup
+## General Setup
 
 1. Download Raspberry Pi Imager to your PC and insert the SD card you'll use into your PC.
 2. Open the imager and select Buster OS.
@@ -40,7 +40,7 @@ As a caution, the current mutracker_proto code uses deprecated drivers on the Ra
 18. Start the connection and log into the desktop with your SSH information. 
 19. If you see the RPi Desktop, you're in!
 
-# Ethernet Setup
+## Ethernet Setup
 
 Now that you're connected to the RPi Desktop, let's setup direct Ethernet connection so you can connect to your RPi literally anywhere anytime.
 
@@ -52,16 +52,16 @@ Now that you're connected to the RPi Desktop, let's setup direct Ethernet connec
 
 # Mutracker Radiation Test
 
-Goals:
+## Goals:
 
 - While setting up for a test, use autoexposure settings with the lights off to help the sensor focus on incident radiation.
 - During a test, capture and save images every 10 seconds while the beam is on.
 - Produce png and raw images to analyze after testing.
 - Identify dead and hot pixels after testing.
 
-Setup How-Tos:
+## Setup How-Tos:
 
-How to start Mutracker Rad Test:
+### How to start Mutracker Rad Test:
 
 - Establish connection with RPi over Ethernet using Putty.
 - Run vncserver in a terminal on your PC.
@@ -69,23 +69,25 @@ How to start Mutracker Rad Test:
 - Enter these commands:
 
     cd mutracker_proto/radtest/systemd
+
     sudo su
+
     bash mutracker-radtest-enable.sh
 - Check that photos are being generated correctly in the radtest_data folder located in directory /home/pi/mutracker_proto
 
-How to stop Mutracker Rad Test:
+### How to stop Mutracker Rad Test:
 
 - While still in the systemd directory as the root user, enter the command:
     
     bash mutracker-radtest-disable.sh
 - All done!
 
-August 11th, 2023 Radiation Test Results: 
+### August 11th, 2023 Radiation Test Results: 
 
 
 # Mutracker Star Field Simulator Test
 
-Goals:
+## Goals:
 
 - Make sure that a single lit pixel, or a gropu of pixels, will correspond to a certain number of lit pixels on the star tracker focal plane.
 - Mounting for Mutracker needs to be aligned to .1 degrees or less if wanting .1 degrees or less error.
@@ -93,7 +95,7 @@ Goals:
 
 # Mutracker Validation Test
 
-Goals: 
+## Goals: 
 
 - Might need to know where Mutracker is facing to get true solutions.
 - Get an image that tells you global position based on an image, or get "what star field do I see" so we can compare ground truth to what the algorithm is saying.
