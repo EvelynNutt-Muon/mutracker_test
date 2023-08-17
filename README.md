@@ -88,6 +88,7 @@ Now that you're connected to the RPi Desktop, let's setup direct Ethernet connec
 
 MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) functional upsets seen at ~5krad and ~9krad. Image analysis underway to detect hot/dead pixels and characterize the radiation induced noise (beam set to 10pA, 100pA, and 1nA).
 
+- [Test log](https://github.com/Muon-Space/radtest/tree/main/results/ucd_20230811/ov2311)
 - [Test result video!](https://drive.google.com/file/d/11sDO0cBbXf5ZDy7LDanfG3Vu3N43jvEA/view?usp=drive_link)
 - [Identified hot pixels](https://drive.google.com/file/d/1xoKgKy0rL_X_Shs2fnMt-HV9935ZENY5/view?usp=drive_link)
 - Identified dead pixels
