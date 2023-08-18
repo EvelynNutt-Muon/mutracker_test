@@ -1,25 +1,24 @@
 # Mutracker Testing
 
-Software development for testing Mutracker will be broken into three stages:
+Software development for testing Mutracker is broken into three stages:
 
-- **Mutracker Radiation Test**: All software required for testing the OV2311 chip on the Arducam module, along with scripts required for post-test analysis, comparative radiation recognition, and pixel anomaly detection.
+- **Mutracker Radiation Test**: All software required for testing the [OV2311](https://www.uctronics.com/2mp-global-shutter-ov2311-mono-camera-modules-pivariety.html) chip on the Arducam module, along with scripts required for post-test analysis, comparative radiation recognition, and pixel anomaly sdetection.
 
-- **Mutracker Star Field Simulator Test**: Most of the code for this stage already exists on the `mutracker_proto` [repository](https://github.com/Muon-Space/mutracker_proto/tree/master). I may end up copying updated versions of those files over, but not as important for now. The main part of this stage is to get Mutracker to reproduce what is displayed on a screen while looking through a collimating lens. The procedure for the optical setup can be found in the [Optics101 test report](https://docs.google.com/document/d/1qmIDggesDDpajqvfpwtfHPBFSn1zCFabPXSUIwwS-dc/edit).
+- **Mutracker Star Field Simulator Test**: Most of the code for this stage exists on the `mutracker_proto` [repository](https://github.com/Muon-Space/mutracker_proto/tree/master). An updated version of `mutracker_proto` may be copied over in the future. The main part is to get Mutracker to reproduce what is displayed on a screen while looking through a [collimating lens](https://www.edmundoptics.com/knowledge-center/application-notes/optics/considerations-in-collimation/). The procedure for the optical setup can be found in the [Optics101 test report](https://docs.google.com/document/d/1qmIDggesDDpajqvfpwtfHPBFSn1zCFabPXSUIwwS-dc/edit).
  
-- **Mutracker Validation Test**: This stage will go beyond what has already been written for testing Mutracker by implementing open source star field generators, astrometric plate solvers, lens distortion calibration, point spread function characterization, and thermal testing. This is the final stage of the Star Field Simulator development.
+- **Mutracker Validation Test**: This stage goes beyond what exists for testing Mutracker's quaternion algorithm by implementing open source star field generators, astrometric plate solvers, [lens distortion calibration](https://www.geeksforgeeks.org/camera-calibration-with-python-opencv/), [point spread function](https://svi.nl/Point-Spread-Function-(PSF)) characterization, and thermal testing. This is the final stage of the Star Field Simulator development.
 
 :camera:
 
 # RPi How-Tos
 
-I have ran into dozens and **_dozens_** of bugs trying to figure out all of these setup steps - so please follow them carefully so you don't mess up your machine or corrupt your RPi.
-
-As a caution, the current `mutracker_proto` code uses deprecated drivers on the Rasbian Buster OS, whereas you would think the Bullseye OS would work just fine. So, please follow these steps to have a successful setup.
+**_Drive deprecation notice_** 
+The installations that are used for the Mutracker code are not compatible with the MIPI_Camera drivers and the OpenCV drivers. To get the most out of one Raspberry Pi, please follow this tutorial so all the `mutracker_proto` code and the `mutracker_test` code will functional correctly.
 
 ## General Setup
 
-1. Download Raspberry Pi Imager to your PC and insert the SD card you'll use into your PC.
-2. Open the imager and select Buster OS.
+1. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
+2. Open the imager and select `Buster OS`.
 3. Be sure to select your SD card and not your PC.
 4. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
 
@@ -29,24 +28,24 @@ As a caution, the current `mutracker_proto` code uses deprecated drivers on the 
 5. Load the OS onto the SD card.
 6. When that finishes, remove the SD card from your machine and insert the card into your RPi.
 7. Turn on the RPi and turn on your hotspot. Ensure your PC is also connected to the hotspot.
-8. Download Putty with all the default settings and enter the hostname into Putty.
+8. [Download Putty](https://putty.org/) with all the default settings and enter the hostname into Putty.
 9. Login using SSH username and password.
 10. After you're logged in, run the command `sudo raspi-config`
-11. You can customize your pi how you'd like, but make sure to go to Interface Options and enable Camera and VNC. (You will have this easy access with a remote view of the RPi Desktop, but these are the two important ones to do now)
+11. You can customize your pi how you'd like, but make sure to go to the `Interface Options` and enable `Camera` and `VNC`. (You will have this easy access with a remote view of the RPi Desktop, but these are the two important ones to do now)
 12. Run `sudo reboot`
 13. Repeat steps 7-9.
 14. Run `vncserver`
 15. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-16. Download RealVNCViewer with the default settings and log in.
+16. [Download RealVNCViewer](https://www.realvnc.com/en/connect/download/viewer/) with the default settings and log into your RealVNC account.
 17. Add a new connection and enter `yourusername.local:1` or whatever the terminal gave you.
 18. Start the connection and log into the desktop with your SSH information. 
 19. If you see the RPi Desktop, you're in!
 
 ## Ethernet Setup
 
-Now that you're connected to the RPi Desktop, let's setup direct Ethernet connection so you can connect to your RPi literally anywhere anytime.
-
-1. Download Bonjour onto your PC and configure with all the default settings. This application will help interpret the Ethernet connection and handle IP addresses for you. 
+1. Download Bonjour onto your PC and configure with all the default settings: This application will help interpret the Ethernet connection and handle IP addresses for you. 
+2. In a terminal accessing your RPi, run `ifconfig`
+3. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
 2. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
 3. Click the first item in the list.
 4. In the right drop-down menu, select `eth0`
