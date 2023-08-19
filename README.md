@@ -12,7 +12,8 @@ Software development for testing Mutracker is broken into three stages:
 
 # RPi How-Tos
 
-**_Drive deprecation notice_** 
+**_DRIVE DEPRACATION NOTICE_** 
+
 The installations that are used for the Mutracker code are not compatible with the MIPI_Camera drivers and the OpenCV drivers. To get the most out of one Raspberry Pi, please follow this tutorial so all the `mutracker_proto` code and the `mutracker_test` code will functional correctly.
 
 ## General Setup
@@ -55,6 +56,7 @@ The installations that are used for the Mutracker code are not compatible with t
 10. In the right drop-down menu, select `eth0`
 11. In both the `Router` and  `DNS Servers` boxes, input your RPi's `inet address`
 12. In the `IPv4 Address` box, input a new `static IP address` which can just be your current inet address with the last digit or two replaced with a much higher number.
+
     - For example, my RPi has an `inet address` of 172.20.10.1, and the `static IP address` I made up is 172.20.10.42
 13. Turn off your RPi.
 14. Connect an Ethernet cable between your PC and your RPi.
