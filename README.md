@@ -36,10 +36,10 @@ The installations that are used for the Mutracker code are not compatible with t
 13. Run `sudo reboot`
 14. Repeat steps 7-9.
 15. [Download RealVNCViewer](https://www.realvnc.com/en/connect/download/viewer/) with the default settings and log into your RealVNC account.
-15. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-16. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
-17. Start the connection and log into the desktop with your SSH information. 
-18. If you see the RPi Desktop, you're in!
+16. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
+17. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+18. Start the connection and log into the desktop with your SSH information. 
+19. If you see the RPi Desktop, you're in!
 
 ## Ethernet Setup
 
