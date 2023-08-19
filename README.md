@@ -48,23 +48,23 @@ The installations that are used for the Mutracker code are not compatible with t
 3. Right click on the Wi-Fi that you're connected to and select `Properties`
 4. In the `Sharing` folder, check both of the boxes and enter `Ethernet` under `Home networking connection:`
 5. Click ok to save these settings.
-3. In a terminal accessing your RPi, run `ifconfig`
-4. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
-5. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
-6. Click `Wireless & Wired Network Settings`
-7. In the right drop-down menu, select `eth0`
-8. In both the `Router` and  `DNS Servers` boxes, input your RPi's `inet address`
-9. In the `IPv4 Address` box, input a new `static IP address` which can just be your current inet address with the last digit or two replaced with a much higher number.
+6. In a terminal accessing your RPi, run `ifconfig`
+7. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
+8. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
+9. Click `Wireless & Wired Network Settings`
+10. In the right drop-down menu, select `eth0`
+11. In both the `Router` and  `DNS Servers` boxes, input your RPi's `inet address`
+12. In the `IPv4 Address` box, input a new `static IP address` which can just be your current inet address with the last digit or two replaced with a much higher number.
     - For example, my RPi has an `inet address` of 172.20.10.1, and the `static IP address` I made up is 172.20.10.42
-10. Turn off your RPi.
-11. Connect an Ethernet cable between your PC and your RPi.
-12. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
-13. Turn on your RPi.
-14. Using Putty, enter the RPi's hostname and login using SSH username and password.
-15. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-16. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
-17. Start the connection and log into the desktop with your SSH information. 
-18. If you see the RPi Desktop, you're in!
+13. Turn off your RPi.
+14. Connect an Ethernet cable between your PC and your RPi.
+15. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
+16. Turn on your RPi.
+17. Using Putty, enter the RPi's hostname and login using SSH username and password.
+18. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
+19. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+20. Start the connection and log into the desktop with your SSH information. 
+21. If you see the RPi Desktop, you're in!
 
 # Mutracker Radiation Test
 
