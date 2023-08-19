@@ -18,38 +18,53 @@ The installations that are used for the Mutracker code are not compatible with t
 ## General Setup
 
 1. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
-2. Open the imager and select `Buster OS`.
-3. Be sure to select your SD card and not your PC.
-4. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
+2. [Download Putty](https://putty.org/) with all the default settings.
+3. Open the imager and select `Buster OS`.
+4. Be sure to select your SD card and not your PC.
+5. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
 
     - For hostname, I'd recommend using `mutracker` or something adjacent.
     - For SSH, choose `pi` as the username and a quick-to-type password. Write all of these down!
     - For WiFi, I suggest using your hotspot so you can connect and test from anywhere.
-5. Load the OS onto the SD card.
-6. When that finishes, remove the SD card from your machine and insert the card into your RPi.
-7. Turn on the RPi and turn on your hotspot. Ensure your PC is also connected to the hotspot.
-8. [Download Putty](https://putty.org/) with all the default settings and enter the hostname into Putty.
-9. Login using SSH username and password.
-10. After you're logged in, run the command `sudo raspi-config`
-11. You can customize your pi how you'd like, but make sure to go to the `Interface Options` and enable `Camera` and `VNC`. (You will have this easy access with a remote view of the RPi Desktop, but these are the two important ones to do now)
-12. Run `sudo reboot`
-13. Repeat steps 7-9.
-14. Run `vncserver`
-15. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-16. [Download RealVNCViewer](https://www.realvnc.com/en/connect/download/viewer/) with the default settings and log into your RealVNC account.
-17. Add a new connection and enter `yourusername.local:1` or whatever the terminal gave you.
-18. Start the connection and log into the desktop with your SSH information. 
-19. If you see the RPi Desktop, you're in!
+6. Load the OS onto the SD card.
+7. When that finishes, remove the SD card from your machine and insert the card into your RPi.
+8. Turn on the RPi and turn on your hotspot. Ensure your PC is also connected to the hotspot.
+9. Enter the hostname into Putty.
+10. Login using SSH username and password.
+11. After you're logged in, run the command `sudo raspi-config`
+12. You can customize your pi how you'd like, but make sure to go to the `Interface Options` and enable `Camera` and `VNC`. (You will have this easy access with a remote view of the RPi Desktop, but these are the two important ones to do now)
+13. Run `sudo reboot`
+14. Repeat steps 7-9.
+15. [Download RealVNCViewer](https://www.realvnc.com/en/connect/download/viewer/) with the default settings and log into your RealVNC account.
+15. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
+16. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+17. Start the connection and log into the desktop with your SSH information. 
+18. If you see the RPi Desktop, you're in!
 
 ## Ethernet Setup
 
-1. Download Bonjour onto your PC and configure with all the default settings: This application will help interpret the Ethernet connection and handle IP addresses for you. 
-2. In a terminal accessing your RPi, run `ifconfig`
-3. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
-2. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
-3. Click the first item in the list.
-4. In the right drop-down menu, select `eth0`
-5. 
+1. If your PC runs Windows, [download Bonjour](https://support.apple.com/kb/DL999?locale=en_US) onto your PC and configure with all the default settings: This application will help interpret the Ethernet connection and find IP addresses for you. 
+2. Go to the `Network Connections` control panel on your PC.
+3. Right click on the Wi-Fi that you're connected to and select `Properties`
+4. In the `Sharing` folder, check both of the boxes and enter `Ethernet` under `Home networking connection:`
+5. Click ok to save these settings.
+3. In a terminal accessing your RPi, run `ifconfig`
+4. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
+5. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
+6. Click `Wireless & Wired Network Settings`
+7. In the right drop-down menu, select `eth0`
+8. In both the `Router` and  `DNS Servers` boxes, input your RPi's `inet address`
+9. In the `IPv4 Address` box, input a new `static IP address` which can just be your current inet address with the last digit or two replaced with a much higher number.
+    - For example, my RPi has an `inet address` of 172.20.10.1, and the `static IP address` I made up is 172.20.10.42
+10. Turn off your RPi.
+11. Connect an Ethernet cable between your PC and your RPi.
+12. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
+13. Turn on your RPi.
+14. Using Putty, enter the RPi's hostname and login using SSH username and password.
+15. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
+16. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+17. Start the connection and log into the desktop with your SSH information. 
+18. If you see the RPi Desktop, you're in!
 
 # Mutracker Radiation Test
 
