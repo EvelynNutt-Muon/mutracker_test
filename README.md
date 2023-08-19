@@ -68,6 +68,10 @@ The installations that are used for the Mutracker code are not compatible with t
 20. Start the connection and log into the desktop with your SSH information. 
 21. If you see the RPi Desktop, you're in!
 
+## Mutracker Code
+
+## MIPI drivers
+
 ## OpenCV installation
 
 If you'd like the Mutracker quaternion algorithm to work on your RPi, continue following the MIPI_Camera/RPI driver installation tutorial like it says.
