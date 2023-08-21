@@ -136,3 +136,49 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 - Get an image that tells you global position based on an image, or get "what star field do I see" so we can compare ground truth to what the algorithm is saying.
 - Can find the total system error and check against the spec sheet to decide on the capability of Mutracker.
 - Be able to download/generate any part of the sky and check Mutracker's accuracy, precision, and repeatability.
+
+
+# RPi SD Card Log
+
+## Mutracker.local
+
+- Bullseye OS
+- Has simple MIPI functions, but not the live GUI.
+- Putty info: mutracker.local, port 22
+- SSH username: evelynn
+- SSH password: potato
+- Inet IP: 172.20.10.1
+- Static IP: 172.20.10.23
+- RealVNC: mutracker.local
+- Mutracker Code Status:
+    - Online Code using `python`: `"NULL pointer access" in arducam_mipicamera.py`
+    - Online Code using `python3`: garbage values for quaternions, `"NULL pointer access"` error, and `module 'numpy' has no attritubte 'int' in __init__.py`
+    - Offline Code using `python`: `No module named 'quaternion'`
+    - Offline Code using `python3`: `No module name 'quaternion'`
+
+## Raspberrypi.local
+
+- Buster OS
+- Fully functioning radiation test code.
+- Putty info: raspberrypi.local, port 22
+- SSH username: pi
+- SSH password: potato
+- Inet IP: 172.20.10.7
+- Static IP: 172.20.10.27
+- RealVNC: raspberrypi.local:1
+- Mutracker Code Status:
+    - Online Code using `python`: freezes after initializing camera
+    - Online Code using `python3`: freezes after initializing camera
+    - Offline Code using `python`: `Cannot import name perf_counter in tetra_ocv.py`
+    - Offline Code using `python3`: `No module name 'cv2' in tetra3_ocv.py`
+
+## Sim.local
+- Buster OS
+- Fully function OpenCV commands and live capture GUI for testing the Star Field Simulator.
+- Putty info: sim.local, port 22
+- SSH username: pi
+- SSH password: potato
+- Inet IP: 172.20.10.7
+- Static IP: 172.20.10.42
+- RealVNC: sim.local
+- Mutracker Code Status: `mutracker_proto` has not been transferred yet.
