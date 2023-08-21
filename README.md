@@ -83,26 +83,53 @@ To get the `mutracker_proto` code onto your PC and your RPi to run the Mutracker
 
 ## MIPI drivers
 
-These intallation instructions follow the [Arudcam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) installation process.
+These intallation instructions follow the [Arducam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) installation process.
 
 To install the MIPI drivers correctly to run `mutracker_proto` files, you'll need to follow these steps carefully:
 
 1. On your RPi under `Preferences`->`Raspberry Pi Configuration`->`Interfaces`, enable the Camera interface.
 2. Run `sudo reboot` to make sure the change holds.
-3. Install the support packages by running these commands:
+3. Open a terminal on your RPi and install the support packages by running these commands:
 
     `sudo apt-get update`
 
     `sudp apt-get install libzbar-dev libopencv-dev`
-    
-    `sudo apt-get install python-opencv`
-4. Download
 
-## OpenCV installation
+4. DO NOT RUN `sudo apt-get install python-opencv` YET!!! Instead, choose from these two options:
 
-If you'd like the Mutracker quaternion algorithm to work on your RPi, continue following the MIPI_Camera/RPI driver installation tutorial like it says.
+- If you'd like the Mutracker quaternion algorithm to work on your RPi, go ahead and run `sudo apt-get install python-opencv` and continue following this tutorial.
+- If you'd like all of the MIPI_Camera/RPI driver features to operate correctly on your RPI, such as live capture, follow [this tutorial](https://pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/) using the pip-install method to be able to install all depedencies of OpenCV without compiling from source.
 
-If you'd like all of the MIPI_Camera/RPI driver features to operate correctly on your RPI, such as live capture, follow [this tutorial](https://pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/) using the pip-install method to be able to install all depedencies of OpenCV without compiling from source.
+5. Download and install the SDK library:
+
+    `git clone https://github.com/ArduCAM/MIPI_Camera.git`
+
+    `cd MIPI_Camera/RPI`
+
+    `make install`
+
+    `cd /tmp`
+
+    `wget https://project-downloads.drogon.net/wiringpi-latest.deb`
+
+    `sudo dpkg -i wiringpi-latest.deb`
+
+    `cd`
+
+    `cd MIPI_Camera/RPI`
+
+    `chmod +x enable_i2c_vc.sh`
+
+    `./enable_i2c_vc.sh`
+
+    Then click Y to reboot
+6. Open a terminal on your RPi again and compile the Arducam examples.
+
+    `cd MIPI_Camera/RPI`
+
+    `make clean && make`
+7. To begin using the Arducam commands and OpenCV Gui, please refer to the [Arducam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) Github under "How to use release demos?"
+
 
 # Mutracker Radiation Test
 
