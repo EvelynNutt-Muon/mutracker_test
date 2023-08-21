@@ -16,6 +16,8 @@ Software development for testing Mutracker is broken into three stages:
 
 The installations that are used for the Mutracker code are not compatible with the MIPI_Camera drivers and the OpenCV drivers. To get the most out of one Raspberry Pi, please follow this tutorial so all the `mutracker_proto` code and the `mutracker_test` code will functional correctly.
 
+IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will update all your drivers and prevent the Mutracker code from working. Since we're using older driver versions, it's okay to run `sudo apt-get update`, but never `upgrade` anything on your RPi.
+
 ## General Setup
 
 1. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
@@ -70,7 +72,31 @@ The installations that are used for the Mutracker code are not compatible with t
 
 ## Mutracker Code
 
+To get the `mutracker_proto` code onto your PC and your RPi to run the Mutracker's quaternion algorithm:
+
+1. Clone the [Mutracker repository](https://github.com/Muon-Space/mutracker_proto/tree/master) to your PC.
+    a. If you don't have access to the repository, follow the instructions in the [ECAD Setup Instructions](https://muonspace.atlassian.net/wiki/spaces/CR/pages/449413121/ECAD+Setup+Instructions)
+2. Download [WinSCP](https://winscp.net/eng/download.php), which will help you SSH into your RPi and transfer files remotely.
+3. With your RPi on and connected to your PC through hot spot or direct Ethernet, use WinSCP to SSH into your RPi.
+4. With a workspace setup, copy the `mutracker_proto` folder into the /home/*your_username* directory on your RPi.
+5. After the file transfers, close WinSCP and open RealVNCViewer to double check the file transferred correctly.
+
 ## MIPI drivers
+
+These intallation instructions follow the [Arudcam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) installation process.
+
+To install the MIPI drivers correctly to run `mutracker_proto` files, you'll need to follow these steps carefully:
+
+1. On your RPi under `Preferences`->`Raspberry Pi Configuration`->`Interfaces`, enable the Camera interface.
+2. Run `sudo reboot` to make sure the change holds.
+3. Install the support packages by running these commands:
+
+    `sudo apt-get update`
+
+    `sudp apt-get install libzbar-dev libopencv-dev`
+    
+    `sudo apt-get install python-opencv`
+4. Download
 
 ## OpenCV installation
 
