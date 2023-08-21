@@ -81,7 +81,7 @@ To get the `mutracker_proto` code onto your PC and your RPi to run the Mutracker
 4. With a workspace setup, copy the `mutracker_proto` folder into the /home/*your_username* directory on your RPi.
 5. After the file transfers, close WinSCP and open RealVNCViewer to double check the file transferred correctly.
 
-## MIPI drivers
+## MIPI Drivers
 
 These intallation instructions follow the [Arducam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) installation process.
 
