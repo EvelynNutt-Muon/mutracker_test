@@ -63,7 +63,7 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 13. Click `Apply` and close the menu.
 14. Turn off your RPi.
 15. Connect an Ethernet cable between your PC and your RPi.
-16. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
+16. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the `static IP address` instead of the `inet address`
 17. Turn on your RPi.
 18. Using Putty, enter the RPi's hostname and login using SSH username and password.
 19. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
