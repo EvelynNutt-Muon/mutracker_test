@@ -14,14 +14,14 @@ Software development for testing Mutracker is broken into three stages:
 
 **_DRIVE DEPRACATION NOTICE_** 
 
-The installations that are used for the Mutracker code are not compatible with the MIPI_Camera drivers and the OpenCV drivers. To get the most out of one Raspberry Pi, please follow this tutorial so all the `mutracker_proto` code and the `mutracker_test` code will functional correctly.
+The installations that are used for the Mutracker code are not compatible with the most recent MIPI_Camera drivers and the OpenCV drivers. To get the most out of one Raspberry Pi, please follow this tutorial so all the `mutracker_proto` code and the `mutracker_test` code will functional correctly.
 
 IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will update all your drivers and prevent the Mutracker code from working. Since we're using older driver versions, it's okay to run `sudo apt-get update`, but never `upgrade` anything on your RPi.
 
 ## General Setup
 
-1. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
-2. [Download Putty](https://putty.org/) with all the default settings.
+1. [Download Putty](https://putty.org/) with all the default settings.
+2. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
 3. Open the imager and select `Buster OS`.
 4. Be sure to select your SD card and not your PC.
 5. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
