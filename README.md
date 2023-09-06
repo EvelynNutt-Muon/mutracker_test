@@ -91,7 +91,7 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
 
 1. On your RPi under `Preferences`->`Raspberry Pi Configuration`->`Interfaces`, enable the Camera interface.
 2. Run `sudo reboot` to make sure the change holds.
-3. Open a terminal on your RPi and install the support packages by running these commands:
+3. Open a terminal on your RPi and install the support packages by running these commands (you may need to connect your RPi to Wi-Fi for this step):
 
     `sudo apt-get update`
 
