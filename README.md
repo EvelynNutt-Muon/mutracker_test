@@ -52,7 +52,7 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 4. In the `Sharing` folder, check both of the boxes and enter `Ethernet` under `Home networking connection:`
 5. Click ok to save these settings.
 6. In a terminal accessing your RPi, run `ifconfig`
-7. Take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
+7. Under the `wlan0` submenu, take note of the RPi's `inet address` of the form `XXX.XXX.XX.X` or `XXX.XX.XX.X`
 8. Go to the Wi-Fi icon in the top right of the RPi Desktop and right click it.
 9. Click `Wireless & Wired Network Settings`
 10. In the right drop-down menu, select `eth0`
