@@ -110,6 +110,8 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
 
     `make install`
 
+    `sudo install -m 644 lib/libarducam_mipicamera.so /usr/lib/`
+
     `cd /tmp`
 
     `wget https://project-downloads.drogon.net/wiringpi-latest.deb`
