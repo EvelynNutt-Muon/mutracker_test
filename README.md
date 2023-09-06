@@ -95,7 +95,7 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
 
     `sudo apt-get update`
 
-    `sudp apt-get install libzbar-dev libopencv-dev`
+    `sudo apt-get install libzbar-dev libopencv-dev`
 
 4. DO NOT RUN `sudo apt-get install python-opencv` YET!!! Instead, choose from these two options:
 
