@@ -39,8 +39,8 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 13. Run `sudo reboot`
 14. Repeat steps 7-9.
 15. [Download RealVNCViewer](https://www.realvnc.com/en/connect/download/viewer/) with the default settings and log into your RealVNC account.
-16. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-17. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+16. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `hostname.local:1`
+17. Add a new connection in the RealVNCViewer and enter `hostname.local:1` or whatever the terminal gave you.
 18. Start the connection and log into the desktop with your SSH information. 
 19. If you see the RPi Desktop, you're in!
 
@@ -66,8 +66,8 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 16. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the `static IP address` instead of the `inet address`
 17. Turn on your RPi.
 18. Using Putty, enter the RPi's hostname and login using SSH username and password.
-19. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-20. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+19. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `hostname.local:1`
+20. Add a new connection in the RealVNCViewer and enter `hostname.local:1` or whatever the terminal gave you.
 21. Start the connection and log into the desktop with your SSH information. 
 22. If you see the RPi Desktop, you're in!
 
@@ -76,6 +76,7 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 To get the `mutracker_proto` code onto your PC and your RPi to run the Mutracker's quaternion algorithm:
 
 1. Clone the [Mutracker repository](https://github.com/Muon-Space/mutracker_proto/tree/master) to your PC.
+
     a. If you don't have access to the repository, follow the instructions in the [ECAD Setup Instructions](https://muonspace.atlassian.net/wiki/spaces/CR/pages/449413121/ECAD+Setup+Instructions)
 2. Download [WinSCP](https://winscp.net/eng/download.php), which will help you SSH into your RPi and transfer files remotely.
 3. With your RPi on and connected to your PC through hot spot or direct Ethernet, use WinSCP to SSH into your RPi.
@@ -196,15 +197,15 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 
 ## Mutracker.local
 
-- Bullseye OS
-- Has simple MIPI functions, but not the live GUI.
+- Buster OS
+- Has simple MIPI functions, but not the live GUI. (TO change in near future)
 - Putty info: mutracker.local, port 22
-- SSH username: evelynn
-- SSH password: potato
-- Inet IP: 172.20.10.1
-- Static IP: 172.20.10.23
+- SSH username: muon
+- SSH password: starfield
+- Inet IP: 10.2.2.20
+- Static IP: 10.2.2.40
 - RealVNC: mutracker.local
-- Mutracker Code Status:
+- Mutracker Code Status: (TO change in near future)
     - Online Code using `python`: `"NULL pointer access" in arducam_mipicamera.py`
     - Online Code using `python3`: garbage values for quaternions, `"NULL pointer access"` error, and `module 'numpy' has no attritubte 'int' in __init__.py`
     - Offline Code using `python`: `No module named 'quaternion'`
