@@ -43,6 +43,23 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 17. Add a new connection in the RealVNCViewer and enter `hostname.local:1` or whatever the terminal gave you.
 18. Start the connection and log into the desktop with your SSH information. 
 19. If you see the RPi Desktop, you're in!
+20. If you don't see the RPi Desktop and instead see `Cannot currently show the desktop` then do the following:
+    - Turn of your RPi.
+    - Take out the SD card and insert it into your PC.
+    - Open the SD card in your File Explorer.
+    - Find the file named `config.txt`
+    - Open `config.txt` using the Notepad application.
+    - Underneat line 6 of the config file, which should read `#hdmi_safe=1` add the following lines of code:
+
+    `hdmi_force_hotplug=1`
+
+    `hdmi_group=2`
+
+    `hdmi_mode=9`
+
+    - Save the file and eject the SD card from your PC.
+    - Put the SD card back into your RPi.
+    - Repeat steps 14-18.
 
 ## Ethernet Setup
 
