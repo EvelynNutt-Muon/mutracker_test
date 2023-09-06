@@ -60,15 +60,16 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 12. In the `IPv4 Address` box, input a new `static IP address` which can just be your current inet address with the last digit or two replaced with a much higher number.
 
     - For example, my RPi has an `inet address` of 172.20.10.1, and the `static IP address` I made up is 172.20.10.42
-13. Turn off your RPi.
-14. Connect an Ethernet cable between your PC and your RPi.
-15. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
-16. Turn on your RPi.
-17. Using Putty, enter the RPi's hostname and login using SSH username and password.
-18. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
-19. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
-20. Start the connection and log into the desktop with your SSH information. 
-21. If you see the RPi Desktop, you're in!
+13. Click `Apply` and close the menu.
+14. Turn off your RPi.
+15. Connect an Ethernet cable between your PC and your RPi.
+16. Turn off your hot spot to not confuse the RPi as it will establish a connection with your PC using the static IP address instead of the `inet address`
+17. Turn on your RPi.
+18. Using Putty, enter the RPi's hostname and login using SSH username and password.
+19. Run `vncserver` in your Putty terminal. The terminal will give you a VNC desktop to log into in the format `yourusername.local:1`
+20. Add a new connection in the RealVNCViewer and enter `yourusername.local:1` or whatever the terminal gave you.
+21. Start the connection and log into the desktop with your SSH information. 
+22. If you see the RPi Desktop, you're in!
 
 ## Mutracker Code
 
