@@ -135,7 +135,9 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
 
     `sudo dpkg -i wiringpi-latest.deb`
 
-    `cd`
+    Then click Y to reboot
+
+    Turn on your RPi again and run the following:
 
     `cd MIPI_Camera/RPI`
 
