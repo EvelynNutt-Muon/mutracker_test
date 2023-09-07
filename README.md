@@ -221,8 +221,8 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 - Putty info: mutracker.local, port 22
 - SSH username: muon
 - SSH password: starfield
-- Inet IP: 10.2.2.20
-- Static IP: 10.2.2.40
+- Inet IP: 192.168.168.142
+- Static IP: 192.168.168.30
 - RealVNC: mutracker.local
 - Mutracker Code Status: (TO change in near future)
     - Online Code using `python`: `"NULL pointer access" in arducam_mipicamera.py`
