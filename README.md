@@ -151,6 +151,21 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
     `make clean && make`
 7. To begin using the Arducam commands and OpenCV Gui, please refer to the [Arducam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) Github under "How to use release demos?"
 
+## Testing Mutracker Code
+
+After transfering the Mutracker code and installing the MIPI Camera drivers, run the following commands to get the Mutracker algorithm running:
+
+`cd mutracker_proto`
+
+`python run_mutracker.py`
+
+If you run into errors, here are the commands you might want to use (make sure to run these outside of the `mutracker_proto` folder):
+
+`sudo pip install v4l2`
+
+`pip install pathlib`
+
+In `run_mutracker.py` in the first line, change `pi` to your username.
 
 # Mutracker Radiation Test
 
