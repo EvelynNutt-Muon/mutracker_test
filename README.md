@@ -22,7 +22,7 @@ IMPORTANT NOTE ----> NEVER run `sudo apt-get upgrade` on your RPi! It will updat
 
 1. [Download Putty](https://putty.org/) with all the default settings.
 2. [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/) to your PC and insert the SD card you'll use into your PC.
-3. Open the imager and select `Buster OS`.
+3. Open the imager and select `Bullseye OS`.
 4. Be sure to select your SD card and not your PC.
 5. Hit the settings button and setup all local host, SSH, and Wi-Fi details.
 
@@ -100,6 +100,49 @@ To get the `mutracker_proto` code onto your PC and your RPi to run the Mutracker
 4. With a workspace setup, copy the `mutracker_proto` folder into the /home/*your_username* directory on your RPi.
 5. After the file transfers, close WinSCP and open RealVNCViewer to double check the file transferred correctly.
 
+## Python3.7 virtual environment in Bullseye OS
+
+`sudo apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev`
+
+`wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz`
+
+`sudo tar zxf Python-3.7.0.tgz`
+
+`cd Python-3.7.0`
+
+`sudo ./configure`
+
+`sudo make -j 4`
+
+`sudo make altinstall`
+
+`pip3.7 install virtualenv`
+
+`virtualenv -p /usr/bin/python3.7 mutracker_environ`
+
+`source mutracker_environ/bin/activate`
+
+`cd mutracker_proto`
+
+`wget http://christian.amsuess.com/tools/arandr/files/arandr-0.1.9.tar.gz`
+
+`tar xzf arandr-0.1.9.tar.gz`
+
+`pip install git+https://chromium.googlesource.com/external/gyp`
+
+`pip install pygame==1.9.4`
+
+`sudo apt install libgirepository1.0-dev`
+
+`pip install pycairo` (this might get uninstalled but that's ok)
+
+`pip3.7 install -r requirements.txt`
+
+`sudo pip install v4l2`
+
+`python run_mutracker.py`
+
+
 ## MIPI Drivers
 
 These intallation instructions follow the [Arducam MIPI_Camera driver](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI) installation process.
@@ -114,9 +157,9 @@ To install the MIPI drivers correctly to run `mutracker_proto` files, you'll nee
 
     `sudo apt-get install libzbar-dev libopencv-dev`
 
-4. DO NOT RUN `sudo apt-get install python-opencv` YET!!! Instead, choose from these two options:
+4. DO NOT RUN `sudo apt-get install python3-opencv` YET!!! Instead, choose from these two options:
 
-- If you'd like the Mutracker quaternion algorithm to work on your RPi, go ahead and run `sudo apt-get install python-opencv` and continue following this tutorial.
+- If you'd like the Mutracker quaternion algorithm to work on your RPi, go ahead and run `sudo apt-get install python3-opencv` and continue following this tutorial.
 - If you'd like all of the MIPI_Camera/RPI driver features to operate correctly on your RPI, such as live capture, follow [this tutorial](https://pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/) using the pip-install method to be able to install all depedencies of OpenCV without compiling from source.
 
 5. Download and install the SDK library:
@@ -271,3 +314,45 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 - Static IP: 172.20.10.42
 - RealVNC: sim.local
 - Mutracker Code Status: `mutracker_proto` has not been transferred yet.
+
+
+## Numpy version errors:
+
+Using the most recent verison of numpy:
+```
+python3 run_mutracker.py
+Open camera...
+Found arducam_isp_camera at address 0C
+Setting the resolution...
+mmal: Failed to fix lens shading, use the default mode!
+Current resolution is (1600, 1300)
+Disable Auto Exposure...
+Setting the exposure...
+mmal: Enable JPEG encoder.
+
+Traceback (most recent call last):
+  File "run_mutracker.py", line 128, in <module>
+    main(sys.argv[1:])
+  File "run_mutracker.py", line 124, in main
+    run_online()
+  File "run_mutracker.py", line 87, in run_online
+    frame.as_array.tofile(file_path)
+  File "/home/muon/MIPI_Camera/RPI/python/arducam_mipicamera.py", line 269, in as_array
+    return np.ctypeslib.as_array(self.buffer_ptr[0].data, shape=(self.length,))
+ValueError: NULL pointer access`
+```
+
+Using 1.16.2 version of numpy:
+```
+RuntimeError: module compiled against API version 0xe but this version of numpy is 0xd
+Traceback (most recent call last):
+  File "run_mutracker.py", line 11, in <module>
+    from tetra3 import Tetra3
+  File "/home/muon/mutracker_proto/tetra3.py", line 83, in <module>
+    import scipy.ndimage
+  File "/home/muon/mutracker_environ/lib/python3.7/site-packages/scipy/ndimage/__init__.py", line 161, in <module>
+    from .filters import *
+  File "/home/muon/mutracker_environ/lib/python3.7/site-packages/scipy/ndimage/filters.py", line 37, in <module>
+    from . import _nd_image
+ImportError: numpy.core.multiarray failed to import
+```
