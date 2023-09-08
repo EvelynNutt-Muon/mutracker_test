@@ -318,7 +318,7 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 
 ## Numpy version errors:
 
-Using the most recent verison of numpy:
+Using the most recent verison of numpy, 1.21.6:
 ```
 python3 run_mutracker.py
 Open camera...
