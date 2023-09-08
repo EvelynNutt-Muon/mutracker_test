@@ -279,14 +279,10 @@ MuTracker image sensor: Tested to 11krad, and recoverable (after power cycle) fu
 - Putty info: mutracker.local, port 22
 - SSH username: muon
 - SSH password: starfield
-- Inet IP: 192.168.168.142
-- Static IP: 192.168.168.30
+- Inet IP: 
+- Static IP: 
 - RealVNC: mutracker.local
-- Mutracker Code Status: (TO change in near future)
-    - Online Code using `python`: `"NULL pointer access" in arducam_mipicamera.py`
-    - Online Code using `python3`: garbage values for quaternions, `"NULL pointer access"` error, and `module 'numpy' has no attritubte 'int' in __init__.py`
-    - Offline Code using `python`: `No module named 'quaternion'`
-    - Offline Code using `python3`: `No module name 'quaternion'`
+- Mutracker Code Status: (refer to the bottom of this repo)
 
 ## Raspberrypi.local
 
