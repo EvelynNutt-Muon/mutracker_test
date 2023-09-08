@@ -344,6 +344,7 @@ ValueError: NULL pointer access`
 
 Using 1.16.2 version of numpy:
 ```
+python3 run_mutracker.py
 RuntimeError: module compiled against API version 0xe but this version of numpy is 0xd
 Traceback (most recent call last):
   File "run_mutracker.py", line 11, in <module>
